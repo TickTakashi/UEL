@@ -48,6 +48,8 @@ namespace UEL {
       trans.Rotate(rotation);
     }
 
+
+
     public static HSBColor ToHSB(this Color c) {
       return HSBColor.FromColor(c);
     }
@@ -83,7 +85,11 @@ namespace UEL {
       Vector3 final_position = new_relative_position + pivot; 
       return final_position;
     }
-    
+
+    // Quaternion Methods
+    public static Quaternion LookAtRotation(this Transform trans, Vector3 point) {
+      return Quaternion.LookRotation((-trans.position + point).normalized);
+    }
 
     // Vector2 Methods
   }

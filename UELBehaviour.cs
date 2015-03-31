@@ -33,7 +33,7 @@ namespace UEL {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
     // Observer Pattern Implementation
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-    public HashSet<IObserver> observers;
+    private HashSet<IObserver> observers;
     
     public void NotifyAll() {
       foreach (IObserver o in observers)

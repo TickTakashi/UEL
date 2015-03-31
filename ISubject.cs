@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace UEL {
-  interface ISubject {
+  public interface ISubject {
     void NotifyAll();
     void Attach(IObserver observer);
     void Detach(IObserver observer);

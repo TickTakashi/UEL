@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace UEL {
-  interface IObserver {
+  public interface IObserver {
     void Notify();
   }
 }

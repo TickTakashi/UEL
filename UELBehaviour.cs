@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace UEL {
-  public class UELBehaviour : MonoBehaviour, ISubject {
+  public class UELBehaviour : MonoBehaviour {
 
     public delegate void Task();
     
@@ -28,30 +28,6 @@ namespace UEL {
 
     public void CancelInvoke(Task task) {
       CancelInvoke(task.Method.Name);
-    }
-    
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-    // Observer Pattern Implementation
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-    private HashSet<IObserver> observers;
-    
-    public void NotifyAll() {
-      foreach (IObserver o in observers)
-        o.Notify();
-    }
-
-    public void Attach(IObserver observer) {
-      if (observers == null)
-        observers = new HashSet<IObserver>();
-      
-      observers.Add(observer);
-    }
-
-    public void Detach(IObserver observer) {
-      if (observers.Contains(observer))
-        observers.Remove(observer);
-      else
-        throw new UnityException("UELBehaviour - Detach - Observer not present!");
     }
   }
 }

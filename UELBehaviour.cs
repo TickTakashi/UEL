@@ -29,5 +29,15 @@ namespace UEL {
     public void CancelInvoke(Task task) {
       CancelInvoke(task.Method.Name);
     }
+
+    public delegate void GradualFunction(float f);
+    public IEnumerator Gradual(float max_time, GradualFunction func) {
+      float f = 0f;
+      while (f <= 1f) {
+        f += Time.deltaTime / max_time;
+        func(f);
+        yield return null;
+      }
+    }
   }
 }

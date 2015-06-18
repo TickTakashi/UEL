@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace UEL {
-  public static class UELMethods {
+  public delegate bool EventArgsCondition<E>(E eventArgs) where E : EventArgs;
+  public delegate bool Condition();
+  public delegate void Func();
 
+  public static class UELMethods {
     // Gameobject Methods 
     public static T GetSafeComponent<T>(this GameObject obj) where T : MonoBehaviour {
       T component = obj.GetComponent<T>();
@@ -14,6 +18,10 @@ namespace UEL {
       }
 
       return component;
+    }
+
+    public static bool IsInLayerMask(this GameObject obj, LayerMask layerMask) {
+      return (layerMask.value & (1 << obj.layer)) > 0;
     }
 
     // Transform Methods
@@ -131,7 +139,7 @@ namespace UEL {
     }
 
     public static Vector2 Coserp(Vector2 a, Vector2 b, float t) {
-      return Vector2.Lerp(a, b, Mathf.Cos(t * Mathf.PI * 0.5f));
+      return Vector2.Lerp(a, b, 1f - Mathf.Cos(t * Mathf.PI * 0.5f));
     }
 
     public static Vector2 Quaderp(Vector2 a, Vector2 b, float t) {

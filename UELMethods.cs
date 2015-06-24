@@ -104,6 +104,18 @@ namespace UEL {
     }
 
     // Vector3 Methods
+    public static Vector3 WithX(this Vector3 vec, float new_x) {
+      return new Vector3(new_x, vec.y, vec.z);
+    }
+    
+    public static Vector3 WithY(this Vector3 vec, float new_y) {
+      return new Vector3(vec.x, new_y, vec.z);
+    }
+    
+    public static Vector3 WithZ(this Vector3 vec, float new_z) {
+      return new Vector3(vec.x, vec.y, new_z);
+    }
+
     public static Vector3 RotatedAroundPoint(this Vector3 point, Vector3 pivot,
       Quaternion rotation) {
       Vector3 relative_position = point - pivot;

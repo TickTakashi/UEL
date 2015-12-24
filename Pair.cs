@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class Pair<X, Y> {
+﻿public class Pair<X, Y> {
   private X _x;
   private Y _y;
 
@@ -39,5 +36,9 @@ public class Pair<X, Y> {
       hashcode += second.GetHashCode();
 
     return hashcode;
+  }
+
+  public Pair<X, Y> Clone() {
+    return new Pair<X, Y>(first, second);
   }
 }

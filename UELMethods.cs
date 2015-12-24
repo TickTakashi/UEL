@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 namespace UEL {
   public delegate bool EventArgsCondition<E>(E eventArgs) where E : EventArgs;
@@ -26,6 +27,19 @@ namespace UEL {
 
     public static float ToAngle(this Vector2 vec) {
         return Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
+    }
+
+    public static T GetRandom<T>(this List<T> list) {
+      return list[UnityEngine.Random.Range(0, list.Count)];
+    }
+
+    public static string ToHex(this Color col) {
+      return ColorToHex(col);
+    }
+
+    public static string ColorToHex(Color32 color) {
+      string hex = color.r.ToString("X2") + color.g.ToString("X2") + color.b.ToString("X2");
+      return hex;
     }
 
     // Transform Methods

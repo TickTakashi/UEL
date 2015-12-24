@@ -8,7 +8,7 @@ namespace UEL {
   public delegate void Func();
 
   public static class UELMethods {
-    // Gameobject Methods 
+    // Gameobject Methods
     public static T GetSafeComponent<T>(this GameObject obj) where T : MonoBehaviour {
       T component = obj.GetComponent<T>();
 
@@ -22,6 +22,10 @@ namespace UEL {
 
     public static bool IsInLayerMask(this GameObject obj, LayerMask layerMask) {
       return (layerMask.value & (1 << obj.layer)) > 0;
+    }
+
+    public static float ToAngle(this Vector2 vec) {
+        return Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
     }
 
     // Transform Methods
@@ -107,11 +111,11 @@ namespace UEL {
     public static Vector3 WithX(this Vector3 vec, float new_x) {
       return new Vector3(new_x, vec.y, vec.z);
     }
-    
+
     public static Vector3 WithY(this Vector3 vec, float new_y) {
       return new Vector3(vec.x, new_y, vec.z);
     }
-    
+
     public static Vector3 WithZ(this Vector3 vec, float new_z) {
       return new Vector3(vec.x, vec.y, new_z);
     }
@@ -120,10 +124,10 @@ namespace UEL {
       Quaternion rotation) {
       Vector3 relative_position = point - pivot;
       Vector3 new_relative_position = rotation * relative_position;
-      Vector3 final_position = new_relative_position + pivot; 
+      Vector3 final_position = new_relative_position + pivot;
       return final_position;
     }
-    
+
     public static Vector3 Sinerp(Vector3 a, Vector3 b, float t) {
       return Vector3.Lerp(a, b, Mathf.Sin(t * Mathf.PI * 0.5f));
     }
@@ -144,7 +148,7 @@ namespace UEL {
       return Vector3.Lerp(a, b, t * t * t * (t * (6f * t - 15f) + 10f));
     }
 
-    // Vector2 Methods 
+    // Vector2 Methods
 
     public static Vector2 Sinerp(Vector2 a, Vector2 b, float t) {
       return Vector2.Lerp(a, b, Mathf.Sin(t * Mathf.PI * 0.5f));
@@ -167,6 +171,7 @@ namespace UEL {
     }
 
     // Quaternion Methods
+
     public static Quaternion LookAtRotation(this Transform trans, Vector3 point) {
       return Quaternion.LookRotation((-trans.position + point).normalized);
     }
@@ -191,13 +196,13 @@ namespace UEL {
       return Quaternion.Lerp(a, b, t * t * t * (t * (6f * t - 15f) + 10f));
     }
 
-    // Float Methods 
+    // Float Methods
     public static float Sinerp(float a, float b, float t) {
       return Mathf.Lerp(a, b, Mathf.Sin(t * Mathf.PI * 0.5f));
     }
 
     public static float Coserp(float a, float b, float t) {
-      return Mathf.Lerp(a, b, Mathf.Cos(t * Mathf.PI * 0.5f));
+      return Mathf.Lerp(a, b, 1f - Mathf.Cos(t * Mathf.PI * 0.5f));
     }
 
     public static float Quaderp(float a, float b, float t) {

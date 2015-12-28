@@ -3,15 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace UEL {
-
-  
-
   public class UELBehaviour : MonoBehaviour {
     public delegate void Task();
-   
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Invoke Wrapper Functions
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     public void Invoke(Task task, float delay) {
       Invoke(task.Method.Name, delay);
     }

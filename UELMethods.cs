@@ -33,6 +33,14 @@ namespace UEL {
       return list[UnityEngine.Random.Range(0, list.Count)];
     }
 
+    public static IEnumerator WaitForSecondsOrCondition(float s, Condition cond) {
+      float t = 0;
+      while(t < s && !cond()) {
+        t += Time.deltaTime;
+        yield return null;
+      }
+    }
+
     public static string ToHex(this Color col) {
       return ColorToHex(col);
     }

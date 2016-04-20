@@ -1,10 +1,12 @@
-﻿public class Pair<X, Y> {
+﻿public class Triple<X, Y, Z> {
   private X _x;
   private Y _y;
+  private Z _z;
 
-  public Pair(X first, Y second) {
+  public Triple(X first, Y second, Z third) {
     _x = first;
     _y = second;
+    _z = third;
   }
 
   public X first { get { return _x; } }
@@ -13,12 +15,15 @@
   public Y second { get { return _y; } }
   public Y y { get { return _y; } }
 
+  public Z third { get { return _z; } }
+  public Z z { get { return _z; } }
+
   public override bool Equals(object obj) {
     if (obj == null)
       return false;
     if (obj == this)
       return true;
-    Pair<X, Y> other = obj as Pair<X, Y>;
+    Triple<X, Y, Z> other = obj as Triple<X, Y, Z>;
     if (other == null)
       return false;
 
@@ -27,7 +32,11 @@
             || ((first != null) && first.Equals(other.first)))
           &&
         (((second == null) && (other.second == null))
-            || ((second != null) && second.Equals(other.second)));
+            || ((second != null) && second.Equals(other.second)))
+          &&
+        (((third == null) && (other.third == null))
+            || ((third != null) && third.Equals(other.third)));
+
   }
 
   public override int GetHashCode() {
@@ -36,11 +45,12 @@
       hashcode += first.GetHashCode();
     if (second != null)
       hashcode += second.GetHashCode();
-
+    if (third != null)
+      hashcode += third.GetHashCode();
     return hashcode;
   }
 
-  public Pair<X, Y> Clone() {
-    return new Pair<X, Y>(first, second);
+  public Triple<X, Y, Z> Clone() {
+    return new Triple<X, Y, Z>(first, second, third);
   }
 }
